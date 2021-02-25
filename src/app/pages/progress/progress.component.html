@@ -1,1 +1,35 @@
-<p>progress works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Barra de Progreso</h5>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [attr.ariaValuenow]="progreso1" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="progreso1 + '%'"></div>
+                </div>
+                <br><br>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [attr.ariaValuenow]="progreso2" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="progreso2 + '%'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <app-incrementador (cambioValorBarra)="progreso1=$event" tituloBarra="Progress Azul" [progreso]="progreso1"></app-incrementador>
+            </div>
+            <!-- nombre del evento (cambiaValorBarra) y que se ejecuta cuando llamo ese evento -->
+        </div>
+        <!-- nombre del input (tituloBarra) y la info que le paso -->
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <app-incrementador (cambioValorBarra)="progreso2=$event" tituloBarra="Progress Verde" [progreso]="progreso2"></app-incrementador>
+            </div>
+        </div>
+    </div>
+</div>
