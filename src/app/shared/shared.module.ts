@@ -7,12 +7,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { RouterModule } from '@angular/router';// Para usar routerLink
 import { CommonModule } from '@angular/common';//Para usar ngFor y similares
+import { PipesModule } from '../pipes/pipes.module';
 
 
 @NgModule({
     imports: [
         RouterModule,
-        CommonModule
+        CommonModule,
+        PipesModule
     ],
     declarations: [
         NopagefoundComponent,
