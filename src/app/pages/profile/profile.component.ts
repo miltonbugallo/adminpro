@@ -12,7 +12,7 @@ export class ProfileComponent implements OnInit {
   usuario: Usuario;
 
   imagenSubir: File;
-  imagenTemp: string;
+  imagenTemp: any;
 
   constructor(
     public _usuarioService: UsuarioService
@@ -51,7 +51,6 @@ export class ProfileComponent implements OnInit {
 
     let reader = new FileReader();
     let urlImagenTemp = reader.readAsDataURL( archivo );
-
     reader.onloadend = () => this.imagenTemp = reader.result;
 
   }

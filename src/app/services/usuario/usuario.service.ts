@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
-import * as swal from 'sweetalert';
+
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
-
+import swal from 'sweetalert';
 @Injectable()
 export class UsuarioService {
 
@@ -89,7 +89,6 @@ export class UsuarioService {
 
   }
 
-
   crearUsuario( usuario: Usuario ) {
 
     let url = URL_SERVICIOS + '/usuario';
@@ -110,10 +109,11 @@ export class UsuarioService {
     return this.http.put( url, usuario )
                 .map( (resp: any) => {
 
-                  // this.usuario = resp.usuario;
-                  let usuarioDB: Usuario = resp.usuario;
+                  if ( usuario._id === this.usuario._id ) {
+                    let usuarioDB: Usuario = resp.usuario;
+                    this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
+                  }
 
-                  this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
                   swal('Usuario actualizado', usuario.nombre, 'success' );
 
                   return true;
@@ -134,6 +134,34 @@ export class UsuarioService {
           .catch( resp => {
             console.log( resp );
           }) ;
+
+  }
+ 
+  cargarUsuarios( desde: number = 0 ) {
+
+    let url = URL_SERVICIOS + '/usuario?desde=' + desde;
+    return this.http.get( url );
+
+  }
+
+  buscarUsuarios( termino: string ) {
+
+    let url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
+    return this.http.get( url )
+                .map( (resp: any) => resp.usuarios );
+
+  }
+
+  borrarUsuario( id: string ) {
+
+    let url = URL_SERVICIOS + '/usuario/' + id;
+    url += '?token=' + this.token;
+
+    return this.http.delete( url )
+                .map( resp => {
+                  swal('Usuario borrado', 'El usuario a sido eliminado correctamente', 'success');
+                  return true;
+                });
 
   }
 
