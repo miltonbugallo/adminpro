@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 
 import { ModalUploadService } from '../components/modal-upload/modal-upload.service';
 
+
 import {
   SettingsService,
   SidebarService,
   SharedService,
   UsuarioService,
   LoginGuardGuard,
+  VerificaTokenGuard,
   SubirArchivoService,
   HospitalService,
   MedicoService,
@@ -29,6 +31,7 @@ import {
     UsuarioService,
     LoginGuardGuard,
     AdminGuard,
+    VerificaTokenGuard,
     SubirArchivoService,
     ModalUploadService,
     HospitalService,
