@@ -1,5 +1,7 @@
 # Adminpro
 
+Proyecto realizado dentro del curso de Anngular y NodeJs de la plataforma Udemy
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.6.
 
 ## Development server
